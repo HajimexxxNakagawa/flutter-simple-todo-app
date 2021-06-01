@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/main_model.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,12 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TODO APP',
-      theme: ThemeData(
-        primarySwatch: Colors.brown,
-      ),
-      home: MyHomePage(),
-    );
+        title: 'TODO APP',
+        theme: ThemeData(
+          primarySwatch: Colors.brown,
+        ),
+        home: ChangeNotifierProvider<MainModel>(
+          create: (_) => MainModel()..getTodoList(),
+          child: MyHomePage(),
+        ));
   }
 }
 
@@ -29,16 +33,17 @@ class MyHomePage extends StatelessWidget {
       drawer: Drawer(
         child: Center(child: Text("アカウント設定")),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "todo",
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      body: Consumer<MainModel>(
+        builder: (context, model, child) {
+          final todoList = model.todoList;
+          return ListView(
+            children: todoList
+                .map(
+                  (todo) => ListTile(title: Text(todo.title)),
+                )
+                .toList(),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
