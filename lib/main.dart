@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hello_world/main_model.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -33,18 +36,22 @@ class MyHomePage extends StatelessWidget {
       drawer: Drawer(
         child: Center(child: Text("アカウント設定")),
       ),
-      body: Consumer<MainModel>(
-        builder: (context, model, child) {
-          final todoList = model.todoList;
-          return ListView(
-            children: todoList
-                .map(
-                  (todo) => ListTile(title: Text(todo.title)),
-                )
-                .toList(),
-          );
-        },
-      ),
+      body: Consumer<MainModel>(builder: (context, model, child) {
+        final todoList = model.todoList;
+        return ListView(
+          children: todoList
+              .map(
+                (todo) => CheckboxListTile(
+                  title: Text(todo.title),
+                  value: todo.isDone,
+                  onChanged: (bool? value) {
+                    todo.isDone = !todo.isDone;
+                  },
+                ),
+              )
+              .toList(),
+        );
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Add todo',
