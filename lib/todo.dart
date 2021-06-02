@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Todo {
   Todo(DocumentSnapshot doc) {
+    this.documentReference = doc.reference;
     final data = doc.data() as dynamic;
     final Timestamp timestamp = data['createdAt'];
 
@@ -14,4 +15,5 @@ class Todo {
   String description = '';
   bool isDone = false;
   DateTime createdAt = DateTime.now();
+  DocumentReference? documentReference;
 }

@@ -5,12 +5,38 @@ import 'package:hello_world/todo.dart';
 class MainModel extends ChangeNotifier {
   List<Todo> todoList = [];
 
-  Future getTodoList() async {
+  void getTodoListRealTime() {
     final snapshots =
-        await FirebaseFirestore.instance.collection('todoList').get();
-    final docs = snapshots.docs;
-    final todoList = docs.map((doc) => Todo(doc)).toList();
-    this.todoList = todoList;
+        FirebaseFirestore.instance.collection('todoList').snapshots();
+    snapshots.listen((snapshot) {
+      final docs = snapshot.docs;
+      final todoList = docs.map((doc) => Todo(doc)).toList();
+      todoList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      this.todoList = todoList;
+      notifyListeners();
+    });
+  }
+
+  Future deleteCheckedTodos() async {
+    final checkedTodos = todoList.where((todo) => todo.isDone).toList();
+    final references =
+        checkedTodos.map((item) => item.documentReference).toList();
+
+    WriteBatch batch = FirebaseFirestore.instance.batch();
+
+    references.forEach((reference) {
+      batch.delete(reference!);
+    });
+
+    return batch.commit();
+  }
+
+  bool isDeleteButtonActive() {
+    final checkedTodos = todoList.where((todo) => todo.isDone).toList();
+    return checkedTodos.length > 0;
+  }
+
+  void reload() {
     notifyListeners();
   }
 }
