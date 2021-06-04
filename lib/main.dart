@@ -1,8 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hello_world/add/add_page.dart';
 import 'package:hello_world/main_model.dart';
+import 'package:hello_world/todolist.dart';
 import 'package:provider/provider.dart';
+
+import 'add_button.dart';
+import 'delete_button.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,57 +35,13 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("TODO APP"),
-        actions: [
-          Consumer<MainModel>(builder: (context, model, child) {
-            final isActive = model.isDeleteButtonActive();
-            return TextButton(
-                onPressed: isActive
-                    ? () async {
-                        await model.deleteCheckedTodos();
-                        print("押されたよ");
-                      }
-                    : null,
-                child: Text(
-                  "一掃",
-                  style: TextStyle(
-                      color: isActive
-                          ? Colors.white
-                          : Colors.white.withOpacity(0.5),
-                      fontWeight: FontWeight.bold),
-                ));
-          })
-        ],
+        actions: [DeleteButton()],
       ),
       drawer: Drawer(
         child: Center(child: Text("アカウント設定")),
       ),
-      body: Consumer<MainModel>(builder: (context, model, child) {
-        final todoList = model.todoList;
-        return ListView(
-          children: todoList
-              .map(
-                (todo) => CheckboxListTile(
-                  title: Text(todo.title),
-                  value: todo.isDone,
-                  onChanged: (bool? value) {
-                    todo.isDone = !todo.isDone;
-                    model.reload();
-                  },
-                ),
-              )
-              .toList(),
-        );
-      }),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => AddPage(), fullscreenDialog: true));
-        },
-        tooltip: 'Add todo',
-        child: Icon(Icons.add),
-      ),
+      body: TodoList(),
+      floatingActionButton: AddButton(),
     );
   }
 }
