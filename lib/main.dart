@@ -19,9 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'TODO APP',
-        theme: ThemeData(
-          primarySwatch: Colors.brown,
-        ),
+        theme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
         home: ChangeNotifierProvider<MainModel>(
           create: (_) => MainModel()..getTodoListRealTime(),
           child: MyHomePage(),

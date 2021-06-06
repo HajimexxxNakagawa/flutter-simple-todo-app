@@ -13,24 +13,54 @@ class AddPage extends StatelessWidget {
           ),
           body: Consumer<AddModel>(
             builder: (context, model, child) {
-              return Column(children: [
-                TextField(
-                  decoration:
-                      InputDecoration(labelText: "Title", hintText: "洗濯物を干す"),
-                  onChanged: (text) => {model.title = text},
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                      labelText: "Description", hintText: "3日分の洗濯物を片付けるぞー！"),
-                  onChanged: (text) => {model.description = text},
-                ),
-                ElevatedButton(
-                    onPressed: () async {
-                      await model.addTodo();
-                      Navigator.pop(context);
-                    },
-                    child: Text('追加')),
-              ]);
+              return Container(
+                padding: EdgeInsets.all(10),
+                child: Column(children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).accentColor)),
+                          labelStyle:
+                              TextStyle(color: Theme.of(context).accentColor),
+                          labelText: "Title",
+                          hintText: "洗濯物を干す"),
+                      onChanged: (text) => {model.title = text},
+                    ),
+                  ),
+                  Container(
+                    height: 240,
+                    child: TextField(
+                      maxLines: 10,
+                      decoration: InputDecoration(
+                          labelStyle:
+                              TextStyle(color: Theme.of(context).accentColor),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).accentColor)),
+                          border: OutlineInputBorder(),
+                          labelText: "Description",
+                          hintText: "3日分の洗濯物を片付けるぞー！"),
+                      onChanged: (text) => {model.description = text},
+                    ),
+                  ),
+                  OutlinedButton(
+                      onPressed: () async {
+                        await model.addTodo();
+                        Navigator.pop(context);
+                      },
+                      style: OutlinedButton.styleFrom(
+                        primary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        side: const BorderSide(color: Colors.grey),
+                      ),
+                      child: const Text('追加')),
+                ]),
+              );
             },
           )),
     );
