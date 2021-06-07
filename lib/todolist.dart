@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
 
 import 'main_model.dart';
@@ -33,13 +34,11 @@ class TodoList extends StatelessWidget {
                       ),
                       if (!todo.isDone)
                         Container(
-                          padding: EdgeInsets.all(20),
-                          width: double.infinity,
-                          child: Text(
-                            todo.description,
-                            textAlign: TextAlign.left,
-                          ),
-                        )
+                            padding: EdgeInsets.all(20),
+                            width: double.infinity,
+                            child: MarkdownBody(
+                              data: todo.description,
+                            ))
                     ],
                   ),
                 ),
