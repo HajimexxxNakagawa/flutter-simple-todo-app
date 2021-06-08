@@ -9,8 +9,8 @@ class AddPage extends StatefulWidget {
 }
 
 class _AddPageState extends State<AddPage> {
-  String title = '';
-  String description = '';
+  String _title = '';
+  String _description = '';
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AddModel>(
@@ -51,7 +51,7 @@ class _AddPageState extends State<AddPage> {
                           onChanged: (text) => {
                             model.title = text,
                             setState(() {
-                              title = text;
+                              _title = text;
                             })
                           },
                         ),
@@ -73,7 +73,7 @@ class _AddPageState extends State<AddPage> {
                           onChanged: (text) => {
                             model.description = text,
                             setState(() {
-                              description = text;
+                              _description = text;
                             })
                           },
                         ),
@@ -95,26 +95,30 @@ class _AddPageState extends State<AddPage> {
                   );
                 },
               ),
-              Column(
-                children: [
-                  CheckboxListTile(
-                      title: Text(
-                        title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Theme.of(context).colorScheme.onPrimary,
+              Card(
+                child: Column(
+                  children: [
+                    CheckboxListTile(
+                        title: Text(
+                          _title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                         ),
-                      ),
-                      value: false,
-                      onChanged: (bool? value) {}),
-                  Container(
-                      padding: EdgeInsets.all(20),
-                      width: double.infinity,
-                      child: MarkdownBody(
-                        data: description,
-                      ))
-                ],
+                        value: false,
+                        onChanged: (bool? value) {}),
+                    Container(
+                        padding: EdgeInsets.all(20),
+                        width: double.infinity,
+                        child: SingleChildScrollView(
+                          child: MarkdownBody(
+                            data: _description,
+                          ),
+                        ))
+                  ],
+                ),
               )
             ])),
       ),
