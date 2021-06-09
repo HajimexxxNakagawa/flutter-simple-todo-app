@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:hello_world/todo.dart';
+import 'package:hello_world/models/Todo.dart';
 import 'package:provider/provider.dart';
 
-import 'main_model.dart';
+import '../../../models/MainModel.dart';
 
 class TodoList extends StatelessWidget {
   @override

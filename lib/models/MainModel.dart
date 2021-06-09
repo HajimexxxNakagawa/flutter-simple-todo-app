@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hello_world/todo.dart';
+import 'package:hello_world/models/Todo.dart';
 
 class MainModel extends ChangeNotifier {
   List<Todo> todoList = [];

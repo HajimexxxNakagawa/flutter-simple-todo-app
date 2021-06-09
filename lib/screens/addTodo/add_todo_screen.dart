@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:hello_world/add/add_model.dart';
+import 'package:hello_world/models/AddModel.dart';
 import 'package:provider/provider.dart';
 
 class AddPage extends StatefulWidget {

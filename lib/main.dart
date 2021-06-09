@@ -1,11 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hello_world/main_model.dart';
-import 'package:hello_world/todolist.dart';
+import 'package:hello_world/models/MainModel.dart';
+import 'package:hello_world/screens/todoList/todo_list_screen.dart';
 import 'package:provider/provider.dart';
-
-import 'add_button.dart';
-import 'delete_button.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,28 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'TODO APP',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
         home: ChangeNotifierProvider<MainModel>(
           create: (_) => MainModel()..getTodoListRealTime(),
-          child: MyHomePage(),
+          child: TodoListScreen(),
         ));
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("TODO APP"),
-        actions: [DeleteButton()],
-      ),
-      drawer: Drawer(
-        child: Center(child: Text("アカウント設定")),
-      ),
-      body: TodoList(),
-      floatingActionButton: AddButton(),
-    );
   }
 }

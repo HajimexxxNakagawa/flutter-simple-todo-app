@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'main_model.dart';
+import '../../../models/MainModel.dart';
 
 class DeleteButton extends StatelessWidget {
   @override
