@@ -1,8 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hello_world/models/MainModel.dart';
-import 'package:hello_world/screens/todoList/todo_list_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:hello_world/screens/welcome/welcome_screen.dart';
+import 'package:hello_world/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,11 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'TODO APP',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.light(),
-        darkTheme: ThemeData.dark(),
-        home: ChangeNotifierProvider<MainModel>(
-          create: (_) => MainModel()..getTodoListRealTime(),
-          child: TodoListScreen(),
-        ));
+        theme: lightThemeData(context),
+        darkTheme: darkThemeData(context),
+        home: WelcomeScreen());
   }
 }

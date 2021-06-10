@@ -1,24 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:hello_world/constants.dart';
 import 'package:hello_world/models/Todo.dart';
-import 'package:provider/provider.dart';
 
 import '../../../models/MainModel.dart';
-
-class TodoList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<MainModel>(builder: (context, model, child) {
-      final todoList = model.todoList;
-      return Container(
-        padding: EdgeInsets.all(10),
-        child: ListView(
-          children: todoList.map((todo) => TodoCard(todo, model)).toList(),
-        ),
-      );
-    });
-  }
-}
 
 class TodoCard extends StatefulWidget {
   final Todo todo;
@@ -35,16 +22,20 @@ class _TodoCardState extends State<TodoCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Theme.of(context).scaffoldBackgroundColor.withBlue(60),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: BorderSide(color: Colors.white, width: 0.1)),
       elevation: _isHide ? 0 : 12,
       child: Column(
         children: [
           CheckboxListTile(
+            activeColor: kPrimaryColor,
             title: Text(
               widget.todo.title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
             value: widget.todo.isDone,

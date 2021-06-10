@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:hello_world/constants.dart';
 import 'package:hello_world/models/AddModel.dart';
 import 'package:provider/provider.dart';
 
@@ -19,14 +20,20 @@ class _AddPageState extends State<AddPage> {
         length: 2,
         child: Scaffold(
             appBar: AppBar(
-              title: Text("新規Todo"),
+              title: Text("New Todo"),
               bottom: const TabBar(
                 tabs: [
                   Tab(
-                    child: Text('editing'),
+                    child: Text(
+                      'Edit',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                   Tab(
-                    child: Text('preview'),
+                    child: Text(
+                      'Preview',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),
@@ -42,10 +49,8 @@ class _AddPageState extends State<AddPage> {
                         child: TextField(
                           decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Theme.of(context).accentColor)),
-                              labelStyle: TextStyle(
-                                  color: Theme.of(context).accentColor),
+                                  borderSide: BorderSide(color: kPrimaryColor)),
+                              labelStyle: TextStyle(color: Colors.white),
                               labelText: "Title",
                               hintText: "洗濯物を干す"),
                           onChanged: (text) => {
@@ -62,11 +67,9 @@ class _AddPageState extends State<AddPage> {
                           keyboardType: TextInputType.multiline,
                           maxLines: 10,
                           decoration: InputDecoration(
-                              labelStyle: TextStyle(
-                                  color: Theme.of(context).accentColor),
+                              labelStyle: TextStyle(color: Colors.white),
                               focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Theme.of(context).accentColor)),
+                                  borderSide: BorderSide(color: kPrimaryColor)),
                               border: OutlineInputBorder(),
                               labelText: "Description",
                               hintText: "3日分の洗濯物を片付けるぞー！"),
@@ -96,15 +99,19 @@ class _AddPageState extends State<AddPage> {
                 },
               ),
               Card(
+                color: Theme.of(context).scaffoldBackgroundColor.withBlue(60),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: BorderSide(color: Colors.white, width: 0.1)),
                 child: Column(
                   children: [
                     CheckboxListTile(
+                        activeColor: kPrimaryColor,
                         title: Text(
                           _title,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
-                            color: Theme.of(context).colorScheme.onPrimary,
                           ),
                         ),
                         value: false,
