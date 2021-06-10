@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hello_world/components/filled_outline_button.dart';
 import 'package:hello_world/constants.dart';
 import 'package:hello_world/models/Chat.dart';
+import 'package:hello_world/screens/messages/message_screen.dart';
 
 import 'components/chat_card.dart';
 
@@ -42,7 +43,12 @@ class ChatPageBody extends StatelessWidget {
               itemCount: chatsData.length,
               itemBuilder: (context, index) => ChatCard(
                     chat: chatsData[index],
-                    press: () {},
+                    press: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MessageScreen()));
+                    },
                   )))
     ]);
   }
