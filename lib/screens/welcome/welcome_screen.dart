@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/constants.dart';
 import 'package:hello_world/screens/signInOrSignUp/signin_or_signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -35,34 +34,31 @@ class WelcomeScreen extends StatelessWidget {
             ),
             Spacer(flex: 2),
             FittedBox(
-              child: TextButton(
+              child: TextButton.icon(
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => SignInOrSignUpScreen()));
                   },
-                  child: Row(children: [
-                    Text(
-                      "Let's go!",
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          color: Theme.of(context)
-                              .textTheme
-                              .bodyText1!
-                              .color!
-                              .withOpacity(0.8)),
-                    ),
-                    SizedBox(width: kDefaultPadding / 4),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 16,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyText1!
-                          .color!
-                          .withOpacity(0.8),
-                    )
-                  ])),
+                  icon: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                    color: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .color!
+                        .withOpacity(0.8),
+                  ),
+                  label: Text(
+                    "Let's go!",
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyText1!
+                            .color!
+                            .withOpacity(0.8)),
+                  )),
             ),
             Spacer(),
           ],
