@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:hello_world/constants.dart';
-import 'package:hello_world/models/AddModel.dart';
+import 'package:hello_world/models/add_model.dart';
 import 'package:provider/provider.dart';
 
 class AddPage extends StatefulWidget {
@@ -20,7 +20,7 @@ class _AddPageState extends State<AddPage> {
         length: 2,
         child: Scaffold(
             appBar: AppBar(
-              title: Text("New Todo"),
+              title: const Text('New Todo'),
               bottom: const TabBar(
                 tabs: [
                   Tab(
@@ -42,17 +42,17 @@ class _AddPageState extends State<AddPage> {
               Consumer<AddModel>(
                 builder: (context, model, child) {
                   return Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Column(children: [
                       Padding(
-                        padding: EdgeInsets.only(bottom: 10),
+                        padding: const EdgeInsets.only(bottom: 10),
                         child: TextField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: kPrimaryColor)),
                               labelStyle: TextStyle(color: Colors.white),
-                              labelText: "Title",
-                              hintText: "洗濯物を干す"),
+                              labelText: 'Title',
+                              hintText: '洗濯物を干す'),
                           onChanged: (text) => {
                             model.title = text,
                             setState(() {
@@ -61,25 +61,23 @@ class _AddPageState extends State<AddPage> {
                           },
                         ),
                       ),
-                      Container(
-                        height: 240,
-                        child: TextField(
-                          keyboardType: TextInputType.multiline,
-                          maxLines: 10,
-                          decoration: InputDecoration(
-                              labelStyle: TextStyle(color: Colors.white),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: kPrimaryColor)),
-                              border: OutlineInputBorder(),
-                              labelText: "Description",
-                              hintText: "3日分の洗濯物を片付けるぞー！"),
-                          onChanged: (text) => {
-                            model.description = text,
-                            setState(() {
-                              _description = text;
-                            })
-                          },
-                        ),
+                      const SizedBox(width: 4),
+                      TextField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 10,
+                        decoration: const InputDecoration(
+                            labelStyle: TextStyle(color: Colors.white),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: kPrimaryColor)),
+                            border: OutlineInputBorder(),
+                            labelText: 'Description',
+                            hintText: '3日分の洗濯物を片付けるぞー！'),
+                        onChanged: (text) => {
+                          model.description = text,
+                          setState(() {
+                            _description = text;
+                          })
+                        },
                       ),
                       OutlinedButton(
                           onPressed: () async {
@@ -102,14 +100,14 @@ class _AddPageState extends State<AddPage> {
                 color: Theme.of(context).scaffoldBackgroundColor.withBlue(60),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
-                    side: BorderSide(color: Colors.white, width: 0.1)),
+                    side: const BorderSide(color: Colors.white, width: 0.1)),
                 child: Column(
                   children: [
                     CheckboxListTile(
                         activeColor: kPrimaryColor,
                         title: Text(
                           _title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),
@@ -117,7 +115,7 @@ class _AddPageState extends State<AddPage> {
                         value: false,
                         onChanged: (bool? value) {}),
                     Container(
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         width: double.infinity,
                         child: SingleChildScrollView(
                           child: MarkdownBody(

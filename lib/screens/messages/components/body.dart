@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/constants.dart';
-import 'package:hello_world/models/ChatMessage.dart';
+import 'package:hello_world/models/chat_message.dart';
 import 'audio_message.dart';
 import 'chat_input_field.dart';
 import 'text_message.dart';
@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
                       message: demeChatMessages[index],
                     )),
           ),
-          ChatInputField(),
+          const ChatInputField(),
         ],
       ),
     );
@@ -41,8 +41,8 @@ class Message extends StatelessWidget {
         return AudioMessage(message: message);
       case ChatMessageType.video:
         return VideoMesage(message: message);
-      default:
-        return SizedBox();
+      case ChatMessageType.image:
+        return VideoMesage(message: message);
     }
   }
 
@@ -55,8 +55,8 @@ class Message extends StatelessWidget {
             message.isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           if (!message.isSender) ...[
-            CircleAvatar(radius: 12, child: Icon(Icons.person)),
-            SizedBox(width: kDefaultPadding / 2),
+            const CircleAvatar(radius: 12, child: Icon(Icons.person)),
+            const SizedBox(width: kDefaultPadding / 2),
           ],
           messageContaint(message),
         ],

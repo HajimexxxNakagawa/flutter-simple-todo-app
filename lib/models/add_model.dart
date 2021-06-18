@@ -7,10 +7,10 @@ class AddModel extends ChangeNotifier {
 
   Future addTodo() async {
     final collection = FirebaseFirestore.instance.collection('todoList');
-    await collection.add({
+    await collection.add(<String, dynamic>{
       'title': title,
       'description': description,
-      "createdAt": Timestamp.now()
+      'createdAt': Timestamp.now()
     });
   }
 }

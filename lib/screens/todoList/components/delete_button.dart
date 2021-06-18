@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/MainModel.dart';
+import '../../../models/main_model.dart';
 
 class DeleteButton extends StatelessWidget {
   @override
@@ -15,7 +15,7 @@ class DeleteButton extends StatelessWidget {
                 }
               : null,
           child: Text(
-            "一掃",
+            '一掃',
             style: TextStyle(
                 color: isActive ? Colors.white : Colors.white.withOpacity(0.5),
                 fontWeight: FontWeight.bold),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/constants.dart';
-import 'package:hello_world/models/ChatMessage.dart';
+import 'package:hello_world/models/chat_message.dart';
 
 class VideoMesage extends StatelessWidget {
   const VideoMesage({
@@ -18,16 +18,16 @@ class VideoMesage extends StatelessWidget {
         child: Stack(alignment: Alignment.center, children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.asset("assets/images/Video Place Here.png"),
+            child: Image.asset('assets/images/Video Place Here.png'),
           ),
           Container(
             height: 25,
             width: 25,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: kPrimaryColor,
               shape: BoxShape.circle,
             ),
-            child: Icon(
+            child: const Icon(
               Icons.play_arrow,
               size: 16,
               color: Colors.white,

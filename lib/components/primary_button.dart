@@ -13,13 +13,13 @@ class PrimaryButton extends StatelessWidget {
 
   final String text;
   final VoidCallback press;
-  final color;
+  final Color? color;
   final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(40)),
       ),
       padding: padding,
@@ -28,7 +28,7 @@ class PrimaryButton extends StatelessWidget {
       onPressed: press,
       child: Text(
         text,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
       ),
     );
   }

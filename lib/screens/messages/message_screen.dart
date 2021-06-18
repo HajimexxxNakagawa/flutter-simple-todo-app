@@ -12,14 +12,14 @@ class MessageScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            BackButton(),
-            CircleAvatar(),
-            SizedBox(
+            const BackButton(),
+            const CircleAvatar(),
+            const SizedBox(
               width: kDefaultPadding,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   'Person name',
                   style: TextStyle(fontSize: 16),
@@ -33,7 +33,7 @@ class MessageScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Body(),
+      body: const Body(),
     );
   }
 }

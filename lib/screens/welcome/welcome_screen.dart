@@ -10,9 +10,9 @@ class WelcomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Spacer(flex: 2),
-            Image.asset("assets/images/welcome_image.png"),
-            Spacer(flex: 3),
+            const Spacer(flex: 2),
+            Image.asset('assets/images/welcome_image.png'),
+            const Spacer(flex: 3),
             Text(
               'Welcome to our \nMessaging and Todo App',
               textAlign: TextAlign.center,
@@ -21,7 +21,7 @@ class WelcomeScreen extends StatelessWidget {
                   .headline5!
                   .copyWith(fontWeight: FontWeight.bold),
             ),
-            Spacer(),
+            const Spacer(),
             Text(
               'Nice colaboration experience with\n chat and task management',
               textAlign: TextAlign.center,
@@ -32,14 +32,16 @@ class WelcomeScreen extends StatelessWidget {
                       .color!
                       .withOpacity(0.64)),
             ),
-            Spacer(flex: 2),
+            const Spacer(flex: 2),
             FittedBox(
               child: TextButton.icon(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SignInOrSignUpScreen()));
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SignInOrSignUpScreen(),
+                      ),
+                    );
                   },
                   icon: Icon(
                     Icons.arrow_forward_ios,
@@ -60,7 +62,7 @@ class WelcomeScreen extends StatelessWidget {
                             .withOpacity(0.8)),
                   )),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ),

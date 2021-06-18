@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/components/primary_button.dart';
 import 'package:hello_world/constants.dart';
-import 'package:hello_world/models/MainModel.dart';
+import 'package:hello_world/models/main_model.dart';
 import 'package:provider/provider.dart';
 
 import '../home_screen.dart';
@@ -17,40 +17,40 @@ class SignInOrSignUpScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
           child: Column(
             children: [
-              Spacer(flex: 2),
+              const Spacer(flex: 2),
               Image.asset(
                 MediaQuery.of(context).platformBrightness == Brightness.light
                     ? 'assets/images/Logo_light.png'
                     : 'assets/images/Logo_dark.png',
                 height: 146,
               ),
-              Spacer(),
+              const Spacer(),
               PrimaryButton(
                 text: 'Sign In',
                 press: () {},
               ),
-              SizedBox(height: kDefaultPadding * 1.5),
+              const SizedBox(height: kDefaultPadding * 1.5),
               PrimaryButton(
                 color: Theme.of(context).colorScheme.secondary,
                 text: 'Sign Up',
                 press: () {},
               ),
-              SizedBox(height: kDefaultPadding * 2),
+              const SizedBox(height: kDefaultPadding * 2),
               TextButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.push<void>(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
                               ChangeNotifierProvider<MainModel>(
                                 create: (_) =>
                                     MainModel()..getTodoListRealTime(),
-                                child: HomeScreen(),
+                                child: const HomeScreen(),
                               )));
                 },
-                child: Text("Skip now"),
+                child: const Text('Skip now'),
               ),
-              Spacer(flex: 2),
+              const Spacer(flex: 2),
             ],
           ),
         ),

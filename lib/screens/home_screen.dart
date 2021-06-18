@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  static List<PreferredSizeWidget> _appBarOptions = <AppBar>[
+  static final List<PreferredSizeWidget> _appBarOptions = <AppBar>[
     chatPageBar(),
     todoPageBar(),
     chatPageBar(),
@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Text('Index 2: Settings'),
   ];
 
-  static List<Widget> _floatingActionButtonOptions = <Widget>[
+  static final List<Widget> _floatingActionButtonOptions = <Widget>[
     chatPageButton(),
     AddTodoButton(),
     chatPageButton(),
@@ -52,15 +52,15 @@ class _HomeScreenState extends State<HomeScreen> {
           _selectedIndex = value;
         });
       },
-      items: [
-        BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
-        BottomNavigationBarItem(icon: Icon(Icons.toll_rounded), label: "Todo"),
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
+        BottomNavigationBarItem(icon: Icon(Icons.toll_rounded), label: 'Todo'),
         BottomNavigationBarItem(
             icon: CircleAvatar(
               radius: 14,
-              backgroundImage: AssetImage("assets/images/user_2.png"),
+              backgroundImage: AssetImage('assets/images/user_2.png'),
             ),
-            label: "settings")
+            label: 'settings')
       ],
     );
   }

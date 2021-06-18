@@ -3,14 +3,14 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:hello_world/constants.dart';
-import 'package:hello_world/models/Todo.dart';
+import 'package:hello_world/models/todo_model.dart';
 
-import '../../../models/MainModel.dart';
+import '../../../models/main_model.dart';
 
 class TodoCard extends StatefulWidget {
+  const TodoCard(this.todo, this.model);
   final Todo todo;
   final MainModel model;
-  TodoCard(this.todo, this.model);
 
   @override
   _TodoCardState createState() => _TodoCardState();
@@ -25,7 +25,7 @@ class _TodoCardState extends State<TodoCard> {
       color: Theme.of(context).scaffoldBackgroundColor.withBlue(60),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
-          side: BorderSide(color: Colors.white, width: 0.1)),
+          side: const BorderSide(color: Colors.white, width: 0.1)),
       elevation: _isHide ? 0 : 12,
       child: Column(
         children: [
@@ -33,7 +33,7 @@ class _TodoCardState extends State<TodoCard> {
             activeColor: kPrimaryColor,
             title: Text(
               widget.todo.title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
@@ -48,12 +48,12 @@ class _TodoCardState extends State<TodoCard> {
             },
           ),
           AnimatedContainer(
-              duration: Duration(milliseconds: 100),
-              padding: EdgeInsets.all(20),
+              duration: const Duration(milliseconds: 100),
+              padding: const EdgeInsets.all(20),
               width: double.infinity,
               constraints: _isHide
-                  ? BoxConstraints(maxHeight: 0)
-                  : BoxConstraints(minHeight: 30, maxHeight: 300),
+                  ? const BoxConstraints(maxHeight: 0)
+                  : const BoxConstraints(minHeight: 30, maxHeight: 300),
               child: SingleChildScrollView(
                 child: MarkdownBody(
                   data: widget.todo.description,

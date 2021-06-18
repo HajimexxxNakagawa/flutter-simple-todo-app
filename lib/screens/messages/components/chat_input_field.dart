@@ -10,7 +10,7 @@ class ChatInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: kDefaultPadding,
         vertical: kDefaultPadding / 2,
       ),
@@ -18,21 +18,22 @@ class ChatInputField extends StatelessWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           boxShadow: [
             BoxShadow(
-                offset: Offset(0, 4),
+                offset: const Offset(0, 4),
                 blurRadius: 32,
                 color: Colors.black.withOpacity(0.04))
           ]),
       child: SafeArea(
         child: Row(
           children: [
-            Icon(
+            const Icon(
               Icons.mic,
               color: kPrimaryColor,
             ),
-            SizedBox(width: kDefaultPadding),
+            const SizedBox(width: kDefaultPadding),
             Expanded(
                 child: Container(
-              padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 0.75),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPadding * 0.75),
               decoration: BoxDecoration(
                   color: kPrimaryColor.withOpacity(0.05),
                   borderRadius: BorderRadius.circular(40)),
@@ -46,11 +47,11 @@ class ChatInputField extends StatelessWidget {
                         .color!
                         .withOpacity(0.64),
                   ),
-                  SizedBox(width: kDefaultPadding / 4),
-                  Expanded(
+                  const SizedBox(width: kDefaultPadding / 4),
+                  const Expanded(
                       child: TextField(
                     decoration: InputDecoration(
-                        hintText: "Type messages...", border: InputBorder.none),
+                        hintText: 'Type messages...', border: InputBorder.none),
                   )),
                   Icon(
                     Icons.attach_file,
@@ -60,7 +61,7 @@ class ChatInputField extends StatelessWidget {
                         .color!
                         .withOpacity(0.64),
                   ),
-                  SizedBox(width: kDefaultPadding / 4),
+                  const SizedBox(width: kDefaultPadding / 4),
                   Icon(
                     Icons.camera_alt_outlined,
                     color: Theme.of(context)
